@@ -9,8 +9,9 @@
     <style>
         :root {
             --bg-color: #0a192f;
-            --accent-color: #00f2fe; /* أزرق سماوي مضيء */
+            --accent-color: #00f2fe; 
             --text-color: #e6f1ff;
+            --sub-text: #8892b0;
         }
 
         * { 
@@ -21,13 +22,13 @@
 
         body { 
             font-family: 'Segoe UI', sans-serif; 
-            background-color: var(--bg-color) !important; 
+            background-color: var(--bg-color); 
             color: var(--text-color); 
             line-height: 1.6; 
             overflow-x: hidden;
         }
 
-        /* شبكة النقاط والخطوط في الطبقة الخلفية تماماً */
+        /* حل تداخل الطبقات لضمان تفاعل الـ Particles بالكامل */
         #particles-js { 
             position: fixed; 
             width: 100%; 
@@ -35,7 +36,6 @@
             z-index: 1; 
             top: 0; 
             left: 0; 
-            pointer-events: none;
             background-color: var(--bg-color);
         }
 
@@ -44,7 +44,7 @@
             margin: auto; 
             padding: 40px 20px; 
             position: relative; 
-            z-index: 2; /* فوق الـ Particles ليمر الضوء من تحت الكروت */
+            z-index: 2; 
         }
 
         header { 
@@ -68,7 +68,9 @@
             color: var(--text-color); 
             text-decoration: none; 
             font-weight: bold; 
+            transition: color 0.3s;
         }
+        nav a:hover { color: var(--accent-color); }
 
         #hero { 
             padding: 80px 0; 
@@ -86,7 +88,7 @@
         }
 
         .description { 
-            color: #8892b0; 
+            color: var(--sub-text); 
             max-width: 700px; 
             margin: 0 auto; 
         }
@@ -101,27 +103,25 @@
 
         .skills-grid { 
             display: grid; 
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); 
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); 
             gap: 20px; 
         }
 
-        /* تأثير الزجاج المبيض والمشبر الفخم (Milky Frosted Glass) */
         .skill-card, .project-card { 
-            background: rgba(255, 255, 255, 0.04) !important; /* مسحة بيضاء شفافة تعطي المظهر المبيض */
-            backdrop-filter: blur(10px) saturate(117%) contrast(100%) !important; /* تغبيش متوازن ليسمح بمرور نور الخطوط */
-            -webkit-backdrop-filter: blur(18px) saturate(117%) contrast(150%) !important;
-            border-radius: 14px !important; 
-            border: 1px solid rgba(255, 255, 255, 0.12) !important; /* حافة جليدية بيضاء ناعمة */
+            background: rgba(255, 255, 255, 0.04); 
+            backdrop-filter: blur(10px); 
+            -webkit-backdrop-filter: blur(10px);
+            border-radius: 14px; 
+            border: 1px solid rgba(255, 255, 255, 0.12); 
             padding: 25px; 
             box-shadow: 0 10px 40px 0 rgba(0, 0, 0, 0.3); 
-            transition: transform 0.3s cubic-bezier(0.25, 1, 0.5, 1), border-color 0.3s ease, background-color 0.3s ease;
+            transition: transform 0.3s ease, border-color 0.3s ease, background-color 0.3s ease;
         }
         
-        /* تفاعل الكارت الزجاجي عند مرور الماوس */
         .skill-card:hover, .project-card:hover {
             transform: translateY(-4px);
-            background: rgba(255, 255, 255, 0.07) !important; /* زيادة البياض الخفيف عند التفاعل */
-            border-color: rgba(0, 242, 254, 0.35) !important;
+            background: rgba(255, 255, 255, 0.07); 
+            border-color: rgba(0, 242, 254, 0.35);
         }
 
         .skill-card h3, .project-card h3 {
@@ -129,41 +129,100 @@
             color: var(--accent-color);
         }
 
+        /* تنظيم كود الـ Project النظيف */
         .project-card { 
             margin-top: 20px; 
-            padding: 40px;
+            padding: 35px;
+        }
+        .project-desc {
+            margin-bottom: 15px; 
+            color: var(--sub-text);
+        }
+        .project-tech-title {
+            margin-bottom: 10px;
+            color: var(--accent-color);
+            border: none;
+        }
+        .project-list {
+            padding-left: 20px; 
+            color: var(--text-color); 
+            margin-bottom: 25px;
+        }
+        .project-list li {
+            margin-bottom: 8px;
         }
 
-        #contact p {
-            margin-top: 15px;
+        /* أزرار التواصل والسوشيال ميديا الاحترافية */
+        .social-links {
+            display: flex;
+            gap: 15px;
+            margin-top: 20px;
         }
-
-        a { 
-            color: var(--accent-color); 
+        .social-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 10px 20px;
+            border: 1px solid rgba(0, 242, 254, 0.2);
+            border-radius: 8px;
+            color: var(--text-color);
+            font-weight: 500;
+            transition: all 0.3s;
+            background: rgba(255, 255, 255, 0.02);
+            position: relative;
+            z-index: 3;
+        }
+        .social-btn:hover {
+            border-color: var(--accent-color);
+            color: var(--bg-color);
+            background: var(--accent-color);
+            box-shadow: 0 0 15px rgba(0, 242, 254, 0.3);
             text-decoration: none;
-        }
-        a:hover {
-            text-decoration: underline;
+            transform: translateY(-2px);
         }
 
-        /* تنسيق الزر الجديد ليتماشى مع الهوية البصرية للموقع */
+        #contact p { margin-top: 15px; }
+        a { color: var(--accent-color); text-decoration: none; position: relative; z-index: 3; }
+        a:hover { text-decoration: underline; }
+
         .btn-project {
             display: inline-block;
-            margin-top: 20px;
             padding: 10px 24px;
             border: 1px solid var(--accent-color);
             color: var(--accent-color) !important;
-            text-decoration: none !important;
             border-radius: 8px;
             font-weight: bold;
             transition: all 0.3s ease;
             background: rgba(0, 242, 254, 0.05);
+            position: relative;
+            z-index: 3; 
         }
         .btn-project:hover {
             background: var(--accent-color);
             color: var(--bg-color) !important;
             box-shadow: 0 0 15px rgba(0, 242, 254, 0.4);
             transform: translateY(-2px);
+        }
+
+        /* الـ Responsive للموبايل */
+        @media (max-width: 600px) {
+            header nav {
+                flex-direction: column;
+                gap: 15px;
+                text-align: center;
+            }
+            nav ul {
+                gap: 15px;
+            }
+            #hero { padding: 40px 0; }
+            .subtitle { font-size: 1.2rem; }
+            .social-links {
+                flex-direction: column;
+                gap: 10px;
+            }
+            .social-btn {
+                justify-content: center;
+            }
         }
     </style>
 </head>
@@ -196,7 +255,7 @@
                 <div class="skill-card"><h3>AI & Innovation</h3><p>LLMs, SAM 2, Python, PyTorch, TensorFlow, Computer Vision.</p></div>
                 <div class="skill-card"><h3>Geospatial Analytics</h3><p>Google Earth Engine, GIS Architecture, Sentinel-1/2, Digital Twins.</p></div>
                 <div class="skill-card"><h3>Data & Visualization</h3><p>PowerBI, Tableau, GCP, Automated ETL Pipelines, Dashboard Design.</p></div>
-                <div class="skill-card"><h3>Governance & Leadership</h3><p>Policy Development, Data Protection, Presentation Design.</p></div>
+                <div class="skill-card"><h3>Governance & Leadership</h3><p>Policy Development, Data Protection, Agile, Presentation Design.</p></div>
             </div>
         </section>
 
@@ -204,22 +263,19 @@
             <h2>Key Projects</h2>
             <div class="project-card">
                 <h3>Port Said Coastal Monitoring & Flood Prediction Digital Twin</h3>
-                <p style="margin-bottom: 15px; color: #8892b0;">
+                <p class="project-desc">
                     Developed an advanced geospatial project dedicated to monitoring coastline retreat and simulating potential flash flood risks at any given time across the Port Said Governorate. This comprehensive analysis is dynamic and fully integrated into an interactive, next-generation dashboard deployed on <strong>Google Colab</strong>, utilizing a completely unique and innovative design philosophy built entirely from scratch. The initiative directly supports the UN Sustainable Development Goals, strongly aligning with <strong>SDG 6 (Clean Water), SDG 11 (Sustainable Cities), SDG 13 (Climate Action), and SDG 14 (Life Below Water)</strong> to foster data-driven climate resilience for UNDP frameworks.
                 </p>
-                <p style="margin-bottom: 10px;">
-                    <strong style="color: var(--accent-color);">Key Methodologies & Technologies:</strong>
-                </p>
-                <ul style="padding-left: 20px; color: #e6f1ff; margin-bottom: 15px;">
-                    <li style="margin-bottom: 8px;"><strong>Model Validation:</strong> Utilized the Kappa coefficient to verify classification accuracy, achieving a highly reliable result of <strong>0.83</strong>.</li>
-                    <li style="margin-bottom: 8px;"><strong>Sabkha Classification:</strong> Implemented a <strong>Random Forest</strong> machine learning algorithm optimized with customized Short-Wave Infrared (SWIR) bands to isolate and map coastal salt flats (Sabkhas).</li>
-                    <li style="margin-bottom: 8px;"><strong>Cloud & AI Integration:</strong> Integrated <strong>GCP (Google Cloud Platform)</strong> for seamless imagery ingestion, combined with <strong>SAM 2 (Segment Anything Model 2)</strong> for advanced object segmentation.</li>
-                    <li style="margin-bottom: 8px;"><strong>Sensor Comparison Slider:</strong> Developed an interactive comparison slider to perform precise side-by-side temporal analysis between <strong>Sentinel-1 SAR (Backscatter)</strong> and <strong>Sentinel-2 optical data</strong>.</li>
+                <p class="project-tech-title"><strong>Key Methodologies & Technologies:</strong></p>
+                <ul class="project-list">
+                    <li><strong>Model Validation:</strong> Utilized the Kappa coefficient to verify classification accuracy, achieving a highly reliable result of <strong>0.83</strong>.</li>
+                    <li><strong>Sabkha Classification:</strong> Implemented a <strong>Random Forest</strong> machine learning algorithm optimized with customized Short-Wave Infrared (SWIR) bands to isolate and map coastal salt flats (Sabkhas).</li>
+                    <li><strong>Cloud & AI Integration:</strong> Integrated <strong>GCP (Google Cloud Platform)</strong> for seamless imagery ingestion, combined with <strong>SAM 2 (Segment Anything Model 2)</strong> for advanced object segmentation.</li>
+                    <li><strong>Sensor Comparison Slider:</strong> Developed an interactive comparison slider to perform precise side-by-side temporal analysis between <strong>Sentinel-1 SAR (Backscatter)</strong> and <strong>Sentinel-2 optical data</strong>.</li>
                 </ul>
                 
-                <!-- Project Link Button -->
                 <a href="https://drive.google.com/file/d/1Rf7W9aZyATI-ThWUb7_n7D4EH9qpl4xz/view?usp=drive_link" target="_blank" class="btn-project">
-                    See My Project
+                     See My Project Video
                 </a>
             </div>
         </section>
@@ -227,6 +283,17 @@
         <section id="contact">
             <h2>Contact</h2>
             <p>Email: <a href="mailto:aelktawey0@gmail.com">aelktawey0@gmail.com</a></p>
+            
+            <div class="social-links">
+                <!-- رابط اللينكد إن الخاص بك مدمج وجاهز -->
+                <a href="https://linkedin.com/in/abdelrhman-elktawey" target="_blank" class="social-btn">
+                    <i class="fab fa-linkedin"></i> LinkedIn
+                </a>
+                <!-- استبدل الرابط أدناه برابط جيت هاب الخاص بك إذا رغبت مستقبلاً -->
+                <a href="https://github.com/YOUR_USERNAME" target="_blank" class="social-btn">
+                    <i class="fab fa-github"></i> GitHub
+                </a>
+            </div>
         </section>
     </main>
 
@@ -245,7 +312,7 @@
                             "enable": true, 
                             "distance": 220, 
                             "color": "#00f2fe", 
-                            "opacity": 0.01, /* خطوط خفيفة ومحسوبة بدقة في الخلفية */
+                            "opacity": 0.05, 
                             "width": 1 
                         },
                         "move": { 
@@ -266,7 +333,7 @@
                         "modes": {
                             "grab": { 
                                 "distance": 220, 
-                                "line_linked": { "opacity": 0.35 } /* الخطوط تضيء وتظهر تحت الزجاج المبيض بوضوح ممتاز عند حركة الماوس */
+                                "line_linked": { "opacity": 0.4 } 
                             }
                         }
                     },
