@@ -145,6 +145,26 @@
         a:hover {
             text-decoration: underline;
         }
+
+        /* تنسيق الزر الجديد ليتماشى مع الهوية البصرية للموقع */
+        .btn-project {
+            display: inline-block;
+            margin-top: 20px;
+            padding: 10px 24px;
+            border: 1px solid var(--accent-color);
+            color: var(--accent-color) !important;
+            text-decoration: none !important;
+            border-radius: 8px;
+            font-weight: bold;
+            transition: all 0.3s ease;
+            background: rgba(0, 242, 254, 0.05);
+        }
+        .btn-project:hover {
+            background: var(--accent-color);
+            color: var(--bg-color) !important;
+            box-shadow: 0 0 15px rgba(0, 242, 254, 0.4);
+            transform: translateY(-2px);
+        }
     </style>
 </head>
 <body>
@@ -183,8 +203,24 @@
         <section id="projects">
             <h2>Key Projects</h2>
             <div class="project-card">
-                <h3>Port Said Coastal Flood Prediction Digital Twin</h3>
-                <p>High-fidelity Digital Twin on GCP, merging hydrology with AI for coastal flood impact simulation (92% accuracy).</p>
+                <h3>Advanced Geospatial Dashboard & Environmental Analysis</h3>
+                <p style="margin-bottom: 15px; color: #8892b0;">
+                    Developed a next-generation, professional interactive dashboard designed entirely from scratch, implementing a completely unique and innovative design philosophy. The project directly contributes to the United Nations Sustainable Development Goals, specifically aligning with <strong>SDG 6, SDG 11, SDG 13, and SDG 14</strong>.
+                </p>
+                <p style="margin-bottom: 10px;">
+                    <strong style="color: var(--accent-color);">Key Methodologies & Technologies:</strong>
+                </p>
+                <ul style="padding-left: 20px; color: #e6f1ff; margin-bottom: 15px;">
+                    <li style="margin-bottom: 8px;"><strong>Model Validation:</strong> Utilized the Kappa coefficient to verify classification accuracy, achieving a highly reliable result of <strong>0.83</strong>.</li>
+                    <li style="margin-bottom: 8px;"><strong>Sabkha Classification:</strong> Implemented a <strong>Random Forest</strong> machine learning algorithm optimized with customized Short-Wave Infrared (SWIR) bands to isolate and map coastal salt flats (Sabkhas).</li>
+                    <li style="margin-bottom: 8px;"><strong>Cloud & AI Integration:</strong> Integrated <strong>GCP (Google Cloud Platform)</strong> for seamless imagery ingestion, combined with <strong>SAM 2 (Segment Anything Model 2)</strong> for advanced object segmentation.</li>
+                    <li style="margin-bottom: 8px;"><strong>Sensor Comparison Slider:</strong> Developed an interactive comparison slider to perform precise side-by-side temporal analysis between <strong>Sentinel-1 SAR (Backscatter)</strong> and <strong>Sentinel-2 optical data</strong>.</li>
+                </ul>
+                
+                <!-- Project Link Button -->
+                <a href="https://drive.google.com/file/d/1Rf7W9aZyATI-ThWUb7_n7D4EH9qpl4xz/view?usp=drive_link" target="_blank" class="btn-project">
+                    See My Project
+                </a>
             </div>
         </section>
 
