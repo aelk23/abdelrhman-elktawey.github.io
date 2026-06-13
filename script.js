@@ -1,56 +1,50 @@
 /* script.js */
 window.addEventListener('DOMContentLoaded', (event) => {
-    // التأكد من أن مكتبة particles.js محملة
     if (typeof particlesJS !== 'undefined') {
         particlesJS("particles-js", {
             "particles": {
                 "number": {
-                    "value": 60, // عدد النقاط
+                    "value": 60,
                     "density": { "enable": true, "value_area": 800 }
                 },
-                "color": { "value": "#87ceeb" }, // لون أزرق سماوي
+                "color": { "value": "#87ceeb" },
                 "shape": { "type": "circle" },
-                "opacity": {
-                    "value": 0.2, // شفافية النقاط نفسها
-                    "random": true // لجعل بعضها أبهت من بعض
-                },
-                "size": {
-                    "value": 1, // حجم النقاط (جعلته أصغر ما يمكن ليصبح "رؤوساً" فقط)
-                    "random": false // حجم ثابت للأناقة
-                },
+                "opacity": { "value": 0.3, "random": true },
+                "size": { "value": 1, "random": false }, // حجم الرؤوس الدائرية صغير جداً كما طلبت
                 "line_linked": {
                     "enable": true,
                     "distance": 150,
                     "color": "#87ceeb",
-                    "opacity": 0.05, // شفافية الخطوط (أقل شيء طفيف جداً كما طلبت)
+                    "opacity": 0.05, // شفافية الخطوط شبه معدومة
                     "width": 1
                 },
                 "move": {
                     "enable": true,
-                    "speed": 1, // حركة بطيئة وهادئة
+                    "speed": 1,
                     "direction": "none",
                     "random": true,
                     "straight": false,
-                    "out_mode": "out",
-                    "bounce": false
+                    "out_mode": "out"
                 }
             },
             "interactivity": {
                 "detect_on": "canvas",
                 "events": {
                     "onhover": {
-                        "enable": true, // تفعيل التفاعل عند مرور الماوس
-                        "mode": "grab" // تأثير الانجذاب نحو الماوس
-                    },
-                    "onclick": {
-                        "enable": false // إلغاء التفاعل عند الضغط
+                        "enable": true,
+                        // هنا التعديل: تفعيل التجاذب (grab) والتنافر (repulse) معاً
+                        "mode": ["grab", "repulse"] 
                     },
                     "resize": true
                 },
                 "modes": {
                     "grab": {
-                        "distance": 200, // المسافة التي يتأثر بها الماوس
-                        "line_linked": { "opacity": 0.15 } // تزيد شفافية الخطوط قليلاً عند الانجذاب للماوس لتأثير بصري
+                        "distance": 200, // مسافة التجاذب
+                        "line_linked": { "opacity": 0.3 } // تظهر الخطوط بوضوح أكبر عند التجاذب
+                    },
+                    "repulse": {
+                        "distance": 100, // مسافة التنافر
+                        "duration": 0.4
                     }
                 }
             },
