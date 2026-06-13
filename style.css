@@ -1,8 +1,8 @@
 :root {
     --bg-color: #0a192f;
-    --accent-color: #87ceeb;
+    --accent-color: #00f2fe; /* لون سايان بلو متوهج واحترافي */
     --text-color: #e6f1ff;
-    /* متغيرات الهالة الإنسيابية */
+    /* متغيرات الهالة */
     --mouse-x: 0px;
     --mouse-y: 0px;
     --aura-opacity: 0;
@@ -17,24 +17,24 @@ body {
     position: relative;
 }
 
-/* تصميم الهالة الضبابية الخفيفة جدًا */
+/* تأثير هالة السايان بلو الخفيفة والموسعة */
 body::after {
     content: '';
     position: fixed;
     top: 0;
     left: 0;
-    width: 250px; /* حجم هالة متوسط ومناسب */
-    height: 250px;
-    /* تدرج لوني يبدأ خفيفاً جداً وينتهي بصفر إضاءة لمنع أي حدة */
-    background: radial-gradient(circle, rgba(135, 206, 235, 0.12) 0%, rgba(135, 206, 235, 0.03) 45%, rgba(0,0,0,0) 70%);
+    width: 350px; /* تم تكبير الحجم لزيادة مدى انتشار النور */
+    height: 350px;
+    /* تدرج لوني يعتمد على السايان الأزرق الخفيف */
+    background: radial-gradient(circle, rgba(0, 242, 254, 0.18) 0%, rgba(0, 242, 254, 0.04) 50%, rgba(0,0,0,0) 70%);
     border-radius: 50%;
     pointer-events: none;
     z-index: 1;
-    /* تحديد السنتر للماوس بشكل دقيق ومحاذاته تماماً مع المؤشر */
-    transform: translate(calc(var(--mouse-x) - 125px), calc(var(--mouse-y) - 125px));
+    /* محاذاة السنتر بدقة مع حجم الهالة الجديد (350 / 2 = 175) */
+    transform: translate(calc(var(--mouse-x) - 175px), calc(var(--mouse-y) - 175px));
     opacity: var(--aura-opacity);
     mix-blend-mode: screen;
-    will-change: transform, opacity; /* تحسين أداء كارت الشاشة للحفاظ على السلاسة */
+    will-change: transform, opacity;
 }
 
 #particles-js { 
@@ -59,6 +59,6 @@ nav a { color: var(--text-color); text-decoration: none; font-weight: bold; }
 
 h2 { border-bottom: 2px solid var(--accent-color); display: inline-block; padding-bottom: 5px; margin-top: 50px; }
 .skills-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 20px; margin-top: 30px; }
-.skill-card { background: rgba(135, 206, 235, 0.03); padding: 20px; border-radius: 10px; border: 1px solid rgba(135, 206, 235, 0.05); }
+.skill-card { background: rgba(0, 242, 254, 0.02); padding: 20px; border-radius: 10px; border: 1px solid rgba(0, 242, 254, 0.05); }
 
 .project-card { border: 1px dashed var(--accent-color); padding: 40px; border-radius: 10px; margin-top: 20px; }
