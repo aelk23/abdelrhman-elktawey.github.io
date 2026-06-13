@@ -8,10 +8,9 @@
     
     <style>
         :root {
-            --bg-color: #043048; /* أفتح درجة رمادي مائل للأبيض النظيف */
-            --accent-color: #00b4d8; /* أزرق سماوي متناسق مع الخلفية الفاتحة */
-            --text-color: #0f172a; /* خط داكن رئيسي للموقع */
-            --dark-text: #1e293b; 
+            --bg-color: #0a192f;
+            --accent-color: #00f2fe; /* أزرق سماوي مضيء */
+            --text-color: #e6f1ff;
         }
 
         * { 
@@ -28,7 +27,7 @@
             overflow-x: hidden;
         }
 
-        /* حاوية شبكة النقاط والخطوط */
+        /* شبكة النقاط والخطوط في الطبقة الخلفية تماماً */
         #particles-js { 
             position: fixed; 
             width: 100%; 
@@ -38,20 +37,6 @@
             left: 0; 
             pointer-events: none;
             background-color: var(--bg-color);
-            /* تطبيق أنيميشن الوميض الدوري (5 ثوانٍ إشعاع + 3 ثوانٍ انطفاء وتكرار) */
-            animation: neonPulse 8s infinite ease-in-out;
-        }
-
-        /* أنيميشن النيون الإشعاعي (5 ثوانٍ توهج كامل، ثم ينطفئ في 3 ثوانٍ) */
-        @keyframes neonPulse {
-            0%, 100% {
-                opacity: 0.25;
-                filter: drop-shadow(0 0 0px rgba(0, 210, 255, 0));
-            }
-            62.5% { /* يمثل 5 ثوانٍ من إجمالي الـ 8 ثوانٍ */
-                opacity: 1;
-                filter: drop-shadow(0 0 12px rgba(0, 210, 255, 0.9)) drop-shadow(0 0 20px rgba(0, 210, 255, 0.6));
-            }
         }
 
         .container { 
@@ -59,7 +44,7 @@
             margin: auto; 
             padding: 40px 20px; 
             position: relative; 
-            z-index: 2; 
+            z-index: 2; /* فوق الـ Particles ليمر الضوء من تحت الكروت */
         }
 
         header { 
@@ -97,11 +82,11 @@
         .subtitle {
             font-size: 1.5rem;
             margin-bottom: 20px;
-            color: #3a86c8;
+            color: #87ceeb;
         }
 
         .description { 
-            color: #475569; 
+            color: #8892b0; 
             max-width: 700px; 
             margin: 0 auto; 
         }
@@ -120,34 +105,28 @@
             gap: 20px; 
         }
 
-        /* كروت زجاجية بيضاء مشبرة فاخرة ومعزولة تماماً */
+        /* تأثير الزجاج المبيض والمشبر الفخم (Milky Frosted Glass) */
         .skill-card, .project-card { 
-            background: rgba(255, 255, 255, 0.88) !important; 
-            backdrop-filter: blur(25px) saturate(200%) contrast(110%) !important; 
-            -webkit-backdrop-filter: blur(25px) saturate(200%) contrast(110%) !important;
+            background: rgba(255, 255, 255, 0.06) !important; /* مسحة بيضاء شفافة تعطي المظهر المبيض */
+            backdrop-filter: blur(16px) saturate(140%) contrast(100%) !important; /* تغبيش متوازن ليسمح بمرور نور الخطوط */
+            -webkit-backdrop-filter: blur(16px) saturate(140%) contrast(100%) !important;
             border-radius: 14px !important; 
-            border: 1px solid rgba(255, 255, 255, 0.7) !important; 
+            border: 1px solid rgba(255, 255, 255, 0.12) !important; /* حافة جليدية بيضاء ناعمة */
             padding: 25px; 
-            color: var(--dark-text) !important; 
-            box-shadow: 0 10px 30px rgba(15, 23, 42, 0.06); 
-            transition: transform 0.3s cubic-bezier(0.25, 1, 0.5, 1), border-color 0.3s ease, box-shadow 0.3s ease;
+            box-shadow: 0 10px 40px 0 rgba(0, 0, 0, 0.3); 
+            transition: transform 0.3s cubic-bezier(0.25, 1, 0.5, 1), border-color 0.3s ease, background-color 0.3s ease;
         }
         
+        /* تفاعل الكارت الزجاجي عند مرور الماوس */
         .skill-card:hover, .project-card:hover {
-            transform: translateY(-5px);
-            background: rgba(255, 255, 255, 0.95) !important;
-            border-color: rgba(0, 180, 216, 0.5) !important;
-            box-shadow: 0 15px 35px rgba(15, 23, 42, 0.12);
+            transform: translateY(-4px);
+            background: rgba(255, 255, 255, 0.09) !important; /* زيادة البياض الخفيف عند التفاعل */
+            border-color: rgba(0, 242, 254, 0.35) !important;
         }
 
         .skill-card h3, .project-card h3 {
             margin-bottom: 10px;
-            color: #0f172a !important; 
-            font-weight: 700;
-        }
-
-        .skill-card p, .project-card p {
-            color: #475569 !important; 
+            color: var(--accent-color);
         }
 
         .project-card { 
@@ -221,24 +200,21 @@
             if (typeof particlesJS !== 'undefined') {
                 particlesJS("particles-js", {
                     "particles": {
-                        "number": { 
-                            "value": 84, 
-                            "density": { "enable": true, "value_area": 900 } 
-                        },
-                        "color": { "value": "#00d2ff" }, /* لون أزرق سماوي نيوني شعاعي مميز */
+                        "number": { "value": 140, "density": { "enable": true, "value_area": 900 } },
+                        "color": { "value": "#00f2fe" },
                         "shape": { "type": "circle" },
-                        "opacity": { "value": 0.7, "random": false }, /* زيادة الشفافية الأساسية للنقاط لتظهر بوضوح فوق الرمادي الفاتح */
-                        "size": { "value": 2.5, "random": true }, /* حجم نقاط ديناميكي ومثالي للرؤية */
+                        "opacity": { "value": 0.25, "random": true },
+                        "size": { "value": 1.5, "random": false },
                         "line_linked": { 
                             "enable": true, 
                             "distance": 220, 
-                            "color": "#00d2ff", 
-                            "opacity": 0.015, /* خطوط خافتة وأنيقة للغاية في وضع السكون */
+                            "color": "#00f2fe", 
+                            "opacity": 0.01, /* خطوط خفيفة ومحسوبة بدقة في الخلفية */
                             "width": 1 
                         },
                         "move": { 
                             "enable": true, 
-                            "speed": 0.5, 
+                            "speed": 0.4, 
                             "direction": "none", 
                             "random": true, 
                             "straight": false, 
@@ -253,8 +229,8 @@
                         },
                         "modes": {
                             "grab": { 
-                                "distance": 261, 
-                                "line_linked": { "opacity": 0.4 } /* تضيء الأذرع النيونية الفاتحة تحت الكروت الزجاجية عند مرور الماوس */
+                                "distance": 220, 
+                                "line_linked": { "opacity": 0.35 } /* الخطوط تضيء وتظهر تحت الزجاج المبيض بوضوح ممتاز عند حركة الماوس */
                             }
                         }
                     },
