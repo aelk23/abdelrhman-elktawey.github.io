@@ -1,98 +1,60 @@
-/* style.css */
-:root {
-    --bg-color: #0a192f; /* لون نيفي غامق جداً واحترافي */
-    --accent-color: #87ceeb; /* أزرق سماوي خفيف للتمييز */
-    --text-color: #e6f1ff; /* لون نص مريح للعين */
-}
-
-body {
-    margin: 0;
-    font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
-    background-color: var(--bg-color);
-    color: var(--text-color);
-    line-height: 1.6;
-    overflow-x: hidden;
-}
-
-/* تنسيق حاوية الخلفية المتحركة */
-#particles-js {
-    position: fixed;
-    width: 100%;
-    height: 100%;
-    z-index: -1; /* لجعلها خلف المحتوى */
-    top: 0;
-    left: 0;
-    background-color: var(--bg-color); /* ضمان لون خلفية موحد */
-}
-
-.container {
-    max-width: 950px;
-    margin: auto;
-    padding: 0 20px;
-}
-
-header {
-    padding: 20px 0;
-    background-color: rgba(10, 25, 47, 0.9); /* خلفية شبه شفافة للهيدر */
-    position: sticky;
-    top: 0;
-    z-index: 100;
-}
-
-nav {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-}
-
-.logo {
-    font-size: 1.5rem;
-    font-weight: bold;
-    color: var(--accent-color);
-}
-
-nav ul {
-    display: flex;
-    list-style: none;
-    gap: 25px;
-    margin: 0;
-    padding: 0;
-}
-
-nav a {
-    color: var(--text-color);
-    text-decoration: none;
-    font-weight: 500;
-    transition: color 0.3s ease;
-}
-
-nav a:hover {
-    color: var(--accent-color);
-}
-
-#hero {
-    padding: 150px 0;
-    text-align: center;
-}
-
-#hero h1 {
-    font-size: 3rem;
-    margin-bottom: 15px;
-}
-
-.highlight {
-    color: var(--accent-color);
-}
-
-.subtitle {
-    font-size: 1.25rem;
-    color: #8892b0;
-    margin-bottom: 30px;
-}
-
-.description {
-    max-width: 700px;
-    margin: 0 auto;
-    color: #8892b0;
-    font-size: 1.1rem;
-}
+/* script.js */
+window.addEventListener('DOMContentLoaded', (event) => {
+    // التأكد من أن مكتبة particles.js محملة
+    if (typeof particlesJS !== 'undefined') {
+        particlesJS("particles-js", {
+            "particles": {
+                "number": {
+                    "value": 60, // عدد النقاط
+                    "density": { "enable": true, "value_area": 800 }
+                },
+                "color": { "value": "#87ceeb" }, // لون أزرق سماوي
+                "shape": { "type": "circle" },
+                "opacity": {
+                    "value": 0.2, // شفافية النقاط نفسها
+                    "random": true // لجعل بعضها أبهت من بعض
+                },
+                "size": {
+                    "value": 1, // حجم النقاط (جعلته أصغر ما يمكن ليصبح "رؤوساً" فقط)
+                    "random": false // حجم ثابت للأناقة
+                },
+                "line_linked": {
+                    "enable": true,
+                    "distance": 150,
+                    "color": "#87ceeb",
+                    "opacity": 0.05, // شفافية الخطوط (أقل شيء طفيف جداً كما طلبت)
+                    "width": 1
+                },
+                "move": {
+                    "enable": true,
+                    "speed": 1, // حركة بطيئة وهادئة
+                    "direction": "none",
+                    "random": true,
+                    "straight": false,
+                    "out_mode": "out",
+                    "bounce": false
+                }
+            },
+            "interactivity": {
+                "detect_on": "canvas",
+                "events": {
+                    "onhover": {
+                        "enable": true, // تفعيل التفاعل عند مرور الماوس
+                        "mode": "grab" // تأثير الانجذاب نحو الماوس
+                    },
+                    "onclick": {
+                        "enable": false // إلغاء التفاعل عند الضغط
+                    },
+                    "resize": true
+                },
+                "modes": {
+                    "grab": {
+                        "distance": 200, // المسافة التي يتأثر بها الماوس
+                        "line_linked": { "opacity": 0.15 } // تزيد شفافية الخطوط قليلاً عند الانجذاب للماوس لتأثير بصري
+                    }
+                }
+            },
+            "retina_detect": true
+        });
+    }
+});
