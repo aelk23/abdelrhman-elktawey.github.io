@@ -5,18 +5,18 @@ window.addEventListener('DOMContentLoaded', (event) => {
                 "number": { "value": 75, "density": { "enable": true, "value_area": 800 } },
                 "color": { "value": "#87ceeb" },
                 "shape": { "type": "circle" },
-                "opacity": { "value": 0.3, "random": true },
+                "opacity": { "value": 0.2, "random": true },
                 "size": { "value": 1.5, "random": false },
                 "line_linked": { 
                     "enable": true, 
                     "distance": 140, 
                     "color": "#87ceeb", 
-                    "opacity": 0.05, // خطوط باهتة جداً كخلفية
+                    "opacity": 0.04, // خطوط شبه مخفية تماماً للأناقة
                     "width": 1 
                 },
                 "move": { 
                     "enable": true, 
-                    "speed": 0.4, // حركة عائمة بطيئة جداً وناعمة
+                    "speed": 0.5, // حركة عائمة ناعمة وبطيئة للجزيئات
                     "direction": "none", 
                     "random": true, 
                     "straight": false, 
@@ -27,56 +27,61 @@ window.addEventListener('DOMContentLoaded', (event) => {
             "interactivity": {
                 "detect_on": "window", 
                 "events": {
-                    "onhover": { 
-                        "enable": true, 
-                        "mode": "grab" // تجاذب ناعم للخطوط
-                    }
+                    "onhover": { "enable": true, "mode": "grab" }
                 },
                 "modes": {
-                    "grab": { 
-                        "distance": 180, 
-                        "line_linked": { "opacity": 0.25 } // تظهر الخطوط بسلاسة عند الاقتراب
-                    }
+                    "grab": { "distance": 180, "line_linked": { "opacity": 0.2 } }
                 }
             },
             "retina_detect": true
         });
 
-        // --- كود الهالة الذكية المخصصة (Custom Aura Logic) ---
+        // --- محرك الهالة الإنسيابية المتقدم (Smooth Lerp Aura) ---
         const canvas = document.querySelector('#particles-js canvas');
         if (canvas) {
-            let lastX = 0, lastY = 0;
-            let targetBlur = 0;
-            let currentBlur = 0;
+            // الإحداثيات الفعلية للماوس
+            let mouseX = window.innerWidth / 2;
+            let mouseY = window.innerHeight / 2;
+            
+            // الإحداثيات المنعمة للهالة (التي تلحق الماوس)
+            let auraX = mouseX;
+            let auraY = mouseY;
+
+            let targetOpacity = 0;
+            let currentOpacity = 0;
             let mouseTimeout;
 
             window.addEventListener('mousemove', (e) => {
-                // حساب سرعة الحركة للتأكد من سلاسة وهج الهالة
-                let distance = Math.hypot(e.clientX - lastX, e.clientY - lastY);
-                lastX = e.clientX;
-                lastY = e.clientY;
+                mouseX = e.clientX;
+                mouseY = e.clientY;
 
-                // تحديث مكان الهالة في الـ CSS ديناميكياً حول مؤشر الماوس
-                document.documentElement.style.setProperty('--mouse-x', `${e.clientX}px`);
-                document.documentElement.style.setProperty('--mouse-y', `${e.clientY}px`);
-
-                // تشغيل الهالة الزرقاء عند الحركة
-                targetBlur = 1; 
+                // إظهار الهالة فوراً عند بدء الحركة (بإضاءة خفيفة جداً 0.12 كحد أقصى)
+                targetOpacity = 0.12; 
                 
                 clearTimeout(mouseTimeout);
-                // أول ما الماوس يقف تماماً، تختفي الهالة تدريجياً بعد 150 ملي ثانية
+                // عند التوقف التام، تبدأ في الاختفاء بعد 100 مللي ثانية
                 mouseTimeout = setTimeout(() => {
-                    targetBlur = 0;
-                }, 150);
+                    targetOpacity = 0;
+                }, 100);
             });
 
-            // حلقة الإنيميشن لتنعيم الـ Transition الخاص بالهالة (كأنه زبدة)
-            function animateAura() {
-                currentBlur += (targetBlur - currentBlur) * 0.1; // تأثير الـ Morph/Easing الناعم
-                document.documentElement.style.setProperty('--aura-opacity', currentBlur);
-                requestAnimationFrame(animateAura);
+            // حلقة التحديث المستمر لضمان حركة زي الزبدة (60 إطار في الثانية)
+            function updateAura() {
+                // معادلة الـ Lerp للتنعيم: الهالة تتحرك بنسبة 8% فقط في كل إطار باتجاه الماوس
+                auraX += (mouseX - auraX) * 0.08;
+                auraY += (mouseY - auraY) * 0.08;
+
+                // تنعيم ظهور واختفاء الشفافية
+                currentOpacity += (targetOpacity - currentOpacity) * 0.1;
+
+                // تمرير القيم لملف الـ CSS
+                document.documentElement.style.setProperty('--mouse-x', `${auraX}px`);
+                document.documentElement.style.setProperty('--mouse-y', `${auraY}px`);
+                document.documentElement.style.setProperty('--aura-opacity', currentOpacity);
+
+                requestAnimationFrame(updateAura);
             }
-            animateAura();
+            updateAura();
         }
     }
 });
