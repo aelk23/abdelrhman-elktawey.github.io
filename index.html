@@ -16,10 +16,13 @@
             --aura-opacity: 0;
         }
 
-        * { box-sizing: border-box; }
+        * { 
+            box-sizing: border-box; 
+            margin: 0; 
+            padding: 0; 
+        }
 
         body { 
-            margin: 0; 
             font-family: 'Segoe UI', sans-serif; 
             background-color: var(--bg-color) !important; 
             color: var(--text-color); 
@@ -27,14 +30,14 @@
             overflow-x: hidden;
         }
 
-        /* الهالة الصغيرة المركزة والمضيئة جداً بلون أزرق سماوي */
+        /* الهالة المضيئة المخصصة: حجم صغير (ربع) ووضوح عالي للعين */
         #mouse-aura {
             position: fixed;
             top: 0;
             left: 0;
-            width: 100px; /* حجم صغير للربع */
+            width: 100px;
             height: 100px;
-            background: radial-gradient(circle, rgba(0, 242, 254, 0.7) 0%, rgba(0, 242, 254, 0.2) 50%, rgba(0,0,0,0) 75%);
+            background: radial-gradient(circle, rgba(0, 242, 254, 0.65) 0%, rgba(0, 242, 254, 0.2) 50%, rgba(0,0,0,0) 75%);
             border-radius: 50%;
             pointer-events: none;
             z-index: 9999;
@@ -55,18 +58,107 @@
             background-color: var(--bg-color);
         }
 
-        .container { max-width: 900px; margin: auto; padding: 20px; position: relative; z-index: 2; }
-        header { padding: 20px 0; display: flex; justify-content: space-between; align-items: center; }
-        nav ul { display: flex; list-style: none; gap: 20px; padding: 0; margin: 0; }
-        nav a { color: var(--text-color); text-decoration: none; font-weight: bold; }
-        #hero { padding: 80px 0; text-align: center; }
-        .highlight { color: var(--accent-color); }
-        .description { color: #8892b0; max-width: 700px; margin: 0 auto; }
-        h2 { border-bottom: 2px solid var(--accent-color); display: inline-block; padding-bottom: 5px; margin-top: 50px; }
-        .skills-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 20px; margin-top: 30px; }
-        .skill-card { background: rgba(0, 242, 254, 0.02); padding: 20px; border-radius: 10px; border: 1px solid rgba(0, 242, 254, 0.05); }
-        .project-card { border: 1px dashed var(--accent-color); padding: 40px; border-radius: 10px; margin-top: 20px; }
-        a { color: var(--accent-color); }
+        .container { 
+            max-width: 900px; 
+            margin: auto; 
+            padding: 40px 20px; 
+            position: relative; 
+            z-index: 2; 
+        }
+
+        header { 
+            width: 100%;
+            padding: 20px 0;
+        }
+        
+        header nav {
+            display: flex; 
+            justify-content: space-between; 
+            align-items: center;
+        }
+
+        nav ul { 
+            display: flex; 
+            list-style: none; 
+            gap: 20px; 
+        }
+
+        nav a { 
+            color: var(--text-color); 
+            text-decoration: none; 
+            font-weight: bold; 
+        }
+
+        #hero { 
+            padding: 80px 0; 
+            text-align: center; 
+        }
+
+        .highlight { 
+            color: var(--accent-color); 
+        }
+
+        .subtitle {
+            font-size: 1.5rem;
+            margin-bottom: 20px;
+            color: #87ceeb;
+        }
+
+        .description { 
+            color: #8892b0; 
+            max-width: 700px; 
+            margin: 0 auto; 
+        }
+
+        h2 { 
+            border-bottom: 2px solid var(--accent-color); 
+            display: inline-block; 
+            padding-bottom: 5px; 
+            margin-top: 50px; 
+            margin-bottom: 20px;
+        }
+
+        .skills-grid { 
+            display: grid; 
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); 
+            gap: 20px; 
+        }
+
+        .skill-card { 
+            background: rgba(0, 242, 254, 0.02); 
+            padding: 20px; 
+            border-radius: 10px; 
+            border: 1px solid rgba(0, 242, 254, 0.05); 
+        }
+        
+        .skill-card h3 {
+            margin-bottom: 10px;
+            color: var(--accent-color);
+        }
+
+        .project-card { 
+            border: 1px dashed var(--accent-color); 
+            padding: 40px; 
+            border-radius: 10px; 
+            margin-top: 20px; 
+        }
+        
+        .project-card h3 {
+            margin-bottom: 15px;
+            color: var(--accent-color);
+        }
+
+        #contact p {
+            margin-top: 15px;
+        }
+
+        a { 
+            color: var(--accent-color); 
+            text-decoration: none;
+        }
+        a:hover {
+            text-decoration: underline;
+        }
     </style>
 </head>
 <body>
@@ -74,11 +166,11 @@
     <div id="particles-js"></div>
     <div id="mouse-aura"></div>
 
-    <header>
-        <nav class="container">
-            <div class="logo">Abdelrhman Elktawey</div>
+    <header class="container">
+        <nav>
+            <div class="logo" style="font-weight: bold; font-size: 1.2rem;">Abdelrhman Elktawey</div>
             <ul>
-                <li><a href="#about">About</a></li>
+                <li><a href="#hero">About</a></li>
                 <li><a href="#skills">Skills</a></li>
                 <li><a href="#projects">Projects</a></li>
                 <li><a href="#contact">Contact</a></li>
@@ -117,7 +209,6 @@
         </section>
     </main>
 
-    <!-- استدعاء المكتبة وتشغيل المحرك -->
     <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
     <script>
         window.addEventListener('DOMContentLoaded', (event) => {
@@ -131,9 +222,9 @@
                         "size": { "value": 1.5, "random": false },
                         "line_linked": { 
                             "enable": true, 
-                            "distance": 220, /* سحب خطوط أطول شيء */
+                            "distance": 220, /* سحب خطوط لأطول مسافة ممكنة */
                             "color": "#00f2fe", 
-                            "opacity": 0.012, /* خطوط باهتة جداً وفخمة */
+                            "opacity": 0.015, /* خطوط باهتة جداً وفخمة في الخلفية */
                             "width": 1 
                         },
                         "move": { 
@@ -161,7 +252,7 @@
                     "retina_detect": true
                 });
 
-                // محرك الهالة السلس مع تلاشي خلال 5 ثوانٍ
+                // محرك تتبع الهالة وتأخير التلاشي لـ 5 ثوانٍ كاملة
                 const auraEl = document.getElementById('mouse-aura');
                 if (auraEl) {
                     let mouseX = window.innerWidth / 2;
@@ -177,10 +268,10 @@
                         mouseX = e.clientX;
                         mouseY = e.clientY;
 
-                        targetOpacity = 0.65; /* وضوح ممتاز */
+                        targetOpacity = 0.65; /* وضوح ممتاز ومتوسط الشفافية للعين */
                         
                         clearTimeout(mouseTimeout);
-                        // تلاشي كامل واختفاء خلال 5 ثوانٍ عند التوقف
+                        // تختفي وتتلاشى تماماً خلال 5 ثوانٍ كاملة عند التوقف
                         mouseTimeout = setTimeout(() => {
                             targetOpacity = 0;
                         }, 5000); 
