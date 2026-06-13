@@ -2,21 +2,21 @@ window.addEventListener('DOMContentLoaded', (event) => {
     if (typeof particlesJS !== 'undefined') {
         particlesJS("particles-js", {
             "particles": {
-                "number": { "value": 140, "density": { "enable": true, "value_area": 900 } }, // زيادة عدد النقاط بشكل متوازن
-                "color": { "value": "#00f2fe" }, // لون السايان بلو النقي
+                "number": { "value": 140, "density": { "enable": true, "value_area": 900 } },
+                "color": { "value": "#00f2fe" }, // لون أزرق سماوي نقي
                 "shape": { "type": "circle" },
-                "opacity": { "value": 0.18, "random": true }, // نقاط خفيفة وغير مزعجة للعين
+                "opacity": { "value": 0.18, "random": true },
                 "size": { "value": 1.5, "random": false },
                 "line_linked": { 
                     "enable": true, 
-                    "distance": 130, 
+                    "distance": 220, // جعل الخطوط أطول شيء ممكن عند السحب والاتصال
                     "color": "#00f2fe", 
-                    "opacity": 0.03, // خطوط باهتة جداً وفخمة
+                    "opacity": 0.015, // تقليل شفافية الخطوط العادية لتصبح خافتة جداً وفخمة
                     "width": 1 
                 },
                 "move": { 
                     "enable": true, 
-                    "speed": 0.4, // حركة عائمة ناعمة جداً كالزبدة
+                    "speed": 0.4, // حركة ناعمة كالزبدة
                     "direction": "none", 
                     "random": true, 
                     "straight": false, 
@@ -30,13 +30,16 @@ window.addEventListener('DOMContentLoaded', (event) => {
                     "onhover": { "enable": true, "mode": "grab" }
                 },
                 "modes": {
-                    "grab": { "distance": 160, "line_linked": { "opacity": 0.2 } }
+                    "grab": { 
+                        "distance": 220, 
+                        "line_linked": { "opacity": 0.28 } // تظهر الخطوط بوضوح ممتع أثناء سحب الماوس
+                    }
                 }
             },
             "retina_detect": true
         });
 
-        // --- محرك الهالة الإنسيابية المتقدم مع تأخير 4 ثوانٍ ---
+        // --- محرك الهالة المركزة والمضيئة مع تلاشي خلال 5 ثوانٍ ---
         const canvas = document.querySelector('#particles-js canvas');
         if (canvas) {
             let mouseX = window.innerWidth / 2;
@@ -52,23 +55,23 @@ window.addEventListener('DOMContentLoaded', (event) => {
                 mouseX = e.clientX;
                 mouseY = e.clientY;
 
-                // رفع الشفافية لـ 0.4 لتكون واضحة للعين تماماً وغير مزعجة
-                targetOpacity = 0.4; 
+                // رفع الشفافية لـ 0.65 لتكون الهالة مضيئة وواضحة جداً بمجرد الحركة
+                targetOpacity = 0.65; 
                 
                 clearTimeout(mouseTimeout);
-                // تأخير الاختفاء لمدة 4 ثوانٍ (4000 ملي ثانية) عند توقف الماوس
+                // تبدأ الهالة في التلاشي والاختفاء تماماً خلال 5 ثوانٍ (5000 ملي ثانية) عند السكون
                 mouseTimeout = setTimeout(() => {
                     targetOpacity = 0;
-                }, 4000); 
+                }, 5000); 
             });
 
             function updateAura() {
-                // تتبع حركة الماوس بسلاسة تامة
+                // تتبع مرن ونير لحركة الماوس بدون أي قفزات
                 auraX += (mouseX - auraX) * 0.08;
                 auraY += (mouseY - auraY) * 0.08;
 
-                // تنعيم الترانزشن الخاص بالظهور والاختفاء
-                currentOpacity += (targetOpacity - currentOpacity) * 0.05;
+                // تنعيم حركة الترانزشن والشفافية لتناسب الـ 5 ثوانٍ
+                currentOpacity += (targetOpacity - currentOpacity) * 0.03;
 
                 document.documentElement.style.setProperty('--mouse-x', `${auraX}px`);
                 document.documentElement.style.setProperty('--mouse-y', `${auraY}px`);
@@ -76,7 +79,7 @@ window.addEventListener('DOMContentLoaded', (event) => {
 
                 requestAnimationFrame(updateAura);
             }
- UpdateAura();
+            updateAura();
         }
     }
 });
