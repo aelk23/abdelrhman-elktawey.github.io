@@ -32,20 +32,19 @@
             position: fixed; 
             width: 100%; 
             height: 100%; 
-            z-index: 1; /* طبقة خلفية */
+            z-index: 1; 
             top: 0; 
             left: 0; 
             pointer-events: none;
             background-color: var(--bg-color);
         }
 
-        /* الحاوية والمحتوى فوق شبكة الخطوط مباشرة لكي تظهر التأثيرات تحتها */
         .container { 
             max-width: 900px; 
             margin: auto; 
             padding: 40px 20px; 
             position: relative; 
-            z-index: 2; /* فوق الـ Particles */
+            z-index: 2; /* فوق الـ Particles ليمر الضوء من تحت الكروت */
         }
 
         header { 
@@ -106,23 +105,23 @@
             gap: 20px; 
         }
 
-        /* ستايل الزجاج المشبر والمصنفر الفخم (Frosted Mac OS Glass) */
+        /* تأثير الزجاج المبيض والمشبر الفخم (Milky Frosted Glass) */
         .skill-card, .project-card { 
-            background: rgba(10, 25, 47, 0.4) !important; /* مزيج داكن شفاف لتعميق التشبير */
-            backdrop-filter: blur(20px) saturate(200%) contrast(95%) !important; /* تغبيش قوي مظهر مشبر */
-            -webkit-backdrop-filter: blur(20px) saturate(200%) contrast(95%) !important;
+            background: rgba(255, 255, 255, 0.06) !important; /* مسحة بيضاء شفافة تعطي المظهر المبيض */
+            backdrop-filter: blur(16px) saturate(140%) contrast(100%) !important; /* تغبيش متوازن ليسمح بمرور نور الخطوط */
+            -webkit-backdrop-filter: blur(16px) saturate(140%) contrast(100%) !important;
             border-radius: 14px !important; 
-            border: 1px solid rgba(255, 255, 255, 0.07) !important; /* حافة جليدية ناعمة تعكس الضوء */
+            border: 1px solid rgba(255, 255, 255, 0.12) !important; /* حافة جليدية بيضاء ناعمة */
             padding: 25px; 
-            box-shadow: 0 12px 40px 0 rgba(0, 0, 0, 0.5); /* ظلال ناعمة تعطيك إيحاء البروز */
-            transition: transform 0.3s cubic-bezier(0.25, 1, 0.5, 1), border-color 0.3s ease;
-            position: relative;
+            box-shadow: 0 10px 40px 0 rgba(0, 0, 0, 0.3); 
+            transition: transform 0.3s cubic-bezier(0.25, 1, 0.5, 1), border-color 0.3s ease, background-color 0.3s ease;
         }
         
-        /* حركة انسيابية ناعمة للكارت الزجاجي عند مرور الماوس */
+        /* تفاعل الكارت الزجاجي عند مرور الماوس */
         .skill-card:hover, .project-card:hover {
             transform: translateY(-4px);
-            border-color: rgba(0, 242, 254, 0.25) !important;
+            background: rgba(255, 255, 255, 0.09) !important; /* زيادة البياض الخفيف عند التفاعل */
+            border-color: rgba(0, 242, 254, 0.35) !important;
         }
 
         .skill-card h3, .project-card h3 {
@@ -210,7 +209,7 @@
                             "enable": true, 
                             "distance": 220, 
                             "color": "#00f2fe", 
-                            "opacity": 0.008, /* خطوط باهتة وفخمة للغاية للعين */
+                            "opacity": 0.01, /* خطوط خفيفة ومحسوبة بدقة في الخلفية */
                             "width": 1 
                         },
                         "move": { 
@@ -224,14 +223,14 @@
                         }
                     },
                     "interactivity": {
-                        "detect_on": "window", /* التفاعل يعتمد على حركة الماوس في النافذة بالكامل */
+                        "detect_on": "window", 
                         "events": {
                             "onhover": { "enable": true, "mode": "grab" }
                         },
                         "modes": {
                             "grab": { 
                                 "distance": 220, 
-                                "line_linked": { "opacity": 0.22 } /* تظهر الخطوط تحت الزجاج بسلاسة تامة عند اقتراب الماوس */
+                                "line_linked": { "opacity": 0.35 } /* الخطوط تضيء وتظهر تحت الزجاج المبيض بوضوح ممتاز عند حركة الماوس */
                             }
                         }
                     },
