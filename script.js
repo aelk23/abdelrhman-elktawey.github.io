@@ -2,26 +2,40 @@ window.addEventListener('DOMContentLoaded', (event) => {
     if (typeof particlesJS !== 'undefined') {
         particlesJS("particles-js", {
             "particles": {
-                "number": { "value": 70, "density": { "enable": true, "value_area": 800 } },
+                "number": { "value": 80, "density": { "enable": true, "value_area": 800 } },
                 "color": { "value": "#87ceeb" },
                 "shape": { "type": "circle" },
-                "size": { "value": 1, "random": false },
+                "opacity": { "value": 0.5, "random": true },
+                "size": { "value": 2, "random": true },
                 "line_linked": { 
                     "enable": true, 
                     "distance": 150, 
                     "color": "#87ceeb", 
-                    "opacity": 0.05, 
+                    "opacity": 0.2, 
                     "width": 1 
                 },
-                "move": { "enable": true, "speed": 1 }
+                "move": { 
+                    "enable": true, 
+                    "speed": 0.6, 
+                    "direction": "none", 
+                    "random": true, 
+                    "straight": false, 
+                    "out_mode": "out", 
+                    "bounce": false 
+                }
             },
             "interactivity": {
                 "detect_on": "window", 
                 "events": {
-                    "onhover": { "enable": true, "mode": ["grab", "repulse"] }
+                    "onhover": { "enable": true, "mode": ["bubble", "repulse"] }
                 },
                 "modes": {
-                    "grab": { "distance": 200, "line_linked": { "opacity": 0.2 } },
+                    "bubble": { 
+                        "distance": 200, 
+                        "size": 6, 
+                        "duration": 0.4, 
+                        "opacity": 0.9 
+                    },
                     "repulse": { "distance": 100, "duration": 0.4 }
                 }
             },
