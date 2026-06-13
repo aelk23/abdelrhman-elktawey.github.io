@@ -2,7 +2,7 @@
     --bg-color: #0a192f;
     --accent-color: #87ceeb;
     --text-color: #e6f1ff;
-    /* متغيرات الماوس والهالة */
+    /* متغيرات الهالة الإنسيابية */
     --mouse-x: 0px;
     --mouse-y: 0px;
     --aura-opacity: 0;
@@ -17,23 +17,24 @@ body {
     position: relative;
 }
 
-/* صانع هالة الماوس الجوجو الذكية */
+/* تصميم الهالة الضبابية الخفيفة جدًا */
 body::after {
     content: '';
     position: fixed;
     top: 0;
     left: 0;
-    width: 300px;
-    height: 300px;
-    background: radial-gradient(circle, rgba(135, 206, 235, 0.15) 0%, rgba(135, 206, 235, 0.05) 50%, rgba(0,0,0,0) 70%);
+    width: 250px; /* حجم هالة متوسط ومناسب */
+    height: 250px;
+    /* تدرج لوني يبدأ خفيفاً جداً وينتهي بصفر إضاءة لمنع أي حدة */
+    background: radial-gradient(circle, rgba(135, 206, 235, 0.12) 0%, rgba(135, 206, 235, 0.03) 45%, rgba(0,0,0,0) 70%);
     border-radius: 50%;
     pointer-events: none;
     z-index: 1;
-    /* ربط مكان الهالة بمكان الماوس */
-    transform: translate(calc(var(--mouse-x) - 150px), calc(var(--mouse-y) - 150px));
-    /* التحكم في الشفافية والنعومة الشديدة في الترانزشن */
+    /* تحديد السنتر للماوس بشكل دقيق ومحاذاته تماماً مع المؤشر */
+    transform: translate(calc(var(--mouse-x) - 125px), calc(var(--mouse-y) - 125px));
     opacity: var(--aura-opacity);
     mix-blend-mode: screen;
+    will-change: transform, opacity; /* تحسين أداء كارت الشاشة للحفاظ على السلاسة */
 }
 
 #particles-js { 
