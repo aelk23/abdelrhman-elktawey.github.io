@@ -2,9 +2,39 @@
     --bg-color: #0a192f;
     --accent-color: #87ceeb;
     --text-color: #e6f1ff;
+    /* متغيرات الماوس والهالة */
+    --mouse-x: 0px;
+    --mouse-y: 0px;
+    --aura-opacity: 0;
 }
 
-body { margin: 0; font-family: 'Segoe UI', sans-serif; background-color: var(--bg-color); color: var(--text-color); line-height: 1.6; }
+body { 
+    margin: 0; 
+    font-family: 'Segoe UI', sans-serif; 
+    background-color: var(--bg-color); 
+    color: var(--text-color); 
+    line-height: 1.6; 
+    position: relative;
+}
+
+/* صانع هالة الماوس الجوجو الذكية */
+body::after {
+    content: '';
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 300px;
+    height: 300px;
+    background: radial-gradient(circle, rgba(135, 206, 235, 0.15) 0%, rgba(135, 206, 235, 0.05) 50%, rgba(0,0,0,0) 70%);
+    border-radius: 50%;
+    pointer-events: none;
+    z-index: 1;
+    /* ربط مكان الهالة بمكان الماوس */
+    transform: translate(calc(var(--mouse-x) - 150px), calc(var(--mouse-y) - 150px));
+    /* التحكم في الشفافية والنعومة الشديدة في الترانزشن */
+    opacity: var(--aura-opacity);
+    mix-blend-mode: screen;
+}
 
 #particles-js { 
     position: fixed; 
@@ -13,11 +43,10 @@ body { margin: 0; font-family: 'Segoe UI', sans-serif; background-color: var(--b
     z-index: 0; 
     top: 0; 
     left: 0; 
-    pointer-events: none; /* مهم لعدم حجب الماوس */
-    filter: drop-shadow(0 0 8px rgba(135, 206, 235, 0.6)); /* تأثير الهالة */
+    pointer-events: none;
 }
 
-.container { max-width: 900px; margin: auto; padding: 20px; position: relative; z-index: 1; }
+.container { max-width: 900px; margin: auto; padding: 20px; position: relative; z-index: 2; }
 
 header { padding: 20px 0; display: flex; justify-content: space-between; align-items: center; }
 nav ul { display: flex; list-style: none; gap: 20px; }
