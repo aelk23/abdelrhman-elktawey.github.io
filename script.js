@@ -8,9 +8,9 @@ window.addEventListener('DOMContentLoaded', (event) => {
                 "size": { "value": 1, "random": false },
                 "line_linked": { 
                     "enable": true, 
-                    "distance": 180, 
+                    "distance": 150, 
                     "color": "#87ceeb", 
-                    "opacity": 0.08, 
+                    "opacity": 0.05, 
                     "width": 1 
                 },
                 "move": { "enable": true, "speed": 1 }
@@ -21,7 +21,7 @@ window.addEventListener('DOMContentLoaded', (event) => {
                     "onhover": { "enable": true, "mode": ["grab", "repulse"] }
                 },
                 "modes": {
-                    "grab": { "distance": 200, "line_linked": { "opacity": 0.3 } },
+                    "grab": { "distance": 200, "line_linked": { "opacity": 0.2 } },
                     "repulse": { "distance": 100, "duration": 0.4 }
                 }
             },
