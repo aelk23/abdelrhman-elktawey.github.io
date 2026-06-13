@@ -3,20 +3,20 @@ window.addEventListener('DOMContentLoaded', (event) => {
         particlesJS("particles-js", {
             "particles": {
                 "number": { "value": 140, "density": { "enable": true, "value_area": 900 } },
-                "color": { "value": "#00f2fe" }, // لون أزرق سماوي نقي
+                "color": { "value": "#00f2fe" },
                 "shape": { "type": "circle" },
-                "opacity": { "value": 0.18, "random": true },
+                "opacity": { "value": 0.2, "random": true },
                 "size": { "value": 1.5, "random": false },
                 "line_linked": { 
                     "enable": true, 
-                    "distance": 220, // جعل الخطوط أطول شيء ممكن عند السحب والاتصال
+                    "distance": 220, // أطول سحب للخطوط
                     "color": "#00f2fe", 
-                    "opacity": 0.015, // تقليل شفافية الخطوط العادية لتصبح خافتة جداً وفخمة
+                    "opacity": 0.015, // تقليل الشفافية لتصبح فخمة وخافتة جداً
                     "width": 1 
                 },
                 "move": { 
                     "enable": true, 
-                    "speed": 0.4, // حركة ناعمة كالزبدة
+                    "speed": 0.4, 
                     "direction": "none", 
                     "random": true, 
                     "straight": false, 
@@ -32,16 +32,16 @@ window.addEventListener('DOMContentLoaded', (event) => {
                 "modes": {
                     "grab": { 
                         "distance": 220, 
-                        "line_linked": { "opacity": 0.28 } // تظهر الخطوط بوضوح ممتع أثناء سحب الماوس
+                        "line_linked": { "opacity": 0.3 } 
                     }
                 }
             },
             "retina_detect": true
         });
 
-        // --- محرك الهالة المركزة والمضيئة مع تلاشي خلال 5 ثوانٍ ---
-        const canvas = document.querySelector('#particles-js canvas');
-        if (canvas) {
+        // --- محرك الهالة المطور الآمن ---
+        const auraEl = document.getElementById('mouse-aura');
+        if (auraEl) {
             let mouseX = window.innerWidth / 2;
             let mouseY = window.innerHeight / 2;
             let auraX = mouseX;
@@ -55,23 +55,22 @@ window.addEventListener('DOMContentLoaded', (event) => {
                 mouseX = e.clientX;
                 mouseY = e.clientY;
 
-                // رفع الشفافية لـ 0.65 لتكون الهالة مضيئة وواضحة جداً بمجرد الحركة
+                // وضوح ممتاز متوسط الشفافية عند التحريك
                 targetOpacity = 0.65; 
                 
                 clearTimeout(mouseTimeout);
-                // تبدأ الهالة في التلاشي والاختفاء تماماً خلال 5 ثوانٍ (5000 ملي ثانية) عند السكون
+                // تختفي وتتلاشى تماماً ببطء شديد خلال 5 ثوانٍ عند السكون
                 mouseTimeout = setTimeout(() => {
                     targetOpacity = 0;
                 }, 5000); 
             });
 
             function updateAura() {
-                // تتبع مرن ونير لحركة الماوس بدون أي قفزات
                 auraX += (mouseX - auraX) * 0.08;
                 auraY += (mouseY - auraY) * 0.08;
 
-                // تنعيم حركة الترانزشن والشفافية لتناسب الـ 5 ثوانٍ
-                currentOpacity += (targetOpacity - currentOpacity) * 0.03;
+                // ترانزشن ناعم جداً ومناسب للمدة المطلوبة
+                currentOpacity += (targetOpacity - currentOpacity) * 0.02;
 
                 document.documentElement.style.setProperty('--mouse-x', `${auraX}px`);
                 document.documentElement.style.setProperty('--mouse-y', `${auraY}px`);
