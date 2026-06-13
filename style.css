@@ -1,64 +1,59 @@
-:root {
-    --bg-color: #0a192f;
-    --accent-color: #00f2fe; /* درجة السايان بلو المضيئة */
-    --text-color: #e6f1ff;
-    /* متغيرات الهالة */
-    --mouse-x: 0px;
-    --mouse-y: 0px;
-    --aura-opacity: 0;
-}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Abdelrhman Elktawey | AI & Geospatial Engineer</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <div id="particles-js"></div>
 
-body { 
-    margin: 0; 
-    font-family: 'Segoe UI', sans-serif; 
-    background-color: var(--bg-color); 
-    color: var(--text-color); 
-    line-height: 1.6; 
-    position: relative;
-}
+    <header>
+        <nav class="container">
+            <div class="logo">Abdelrhman Elktawey</div>
+            <ul>
+                <li><a href="#about">About</a></li>
+                <li><a href="#skills">Skills</a></li>
+                <li><a href="#projects">Projects</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+        </nav>
+    </header>
 
-/* تصميم الهالة المخصصة الواضحة مع دمج اللون السايان */
-body::after {
-    content: '';
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 380px; /* حجم انتشار ممتاز للهالة */
-    height: 380px;
-    /* تدرج لوني يعتمد على السايان مع دمج إضاءة خفيفة مريحة للعين */
-    background: radial-gradient(circle, rgba(0, 242, 254, 0.25) 0%, rgba(0, 242, 254, 0.05) 45%, rgba(0,0,0,0) 70%);
-    border-radius: 50%;
-    pointer-events: none;
-    z-index: 1;
-    /* ضبط السنتر بدقة تامة مع الحجم الجديد (380 / 2 = 190) */
-    transform: translate(calc(var(--mouse-x) - 190px), calc(var(--mouse-y) - 190px));
-    opacity: var(--aura-opacity);
-    mix-blend-mode: screen;
-    will-change: transform, opacity;
-}
+    <main class="container">
+        <section id="hero">
+            <h1>Hi, I'm <span class="highlight">Abdelrhman Elktawey</span></h1>
+            <p class="subtitle">AI Engineer | Geospatial Data Analyst</p>
+            <p class="description">Intern - Digital, AI and Innovation Hub dedicated to translating complex Earth Observation data into high-precision analytical assets. Expert in deploying Deep Learning (LLMs, SAM 2) and Google Earth Engine to support UN-aligned policy and digital innovation.</p>
+        </section>
 
-#particles-js { 
-    position: fixed; 
-    width: 100%; 
-    height: 100%; 
-    z-index: 0; 
-    top: 0; 
-    left: 0; 
-    pointer-events: none;
-}
+        <section id="skills">
+            <h2>Technical Skills</h2>
+            <div class="skills-grid">
+                <div class="skill-card"><h3>AI & Innovation</h3><p>LLMs, SAM 2, Python, PyTorch, TensorFlow, Computer Vision.</p></div>
+                <div class="skill-card"><h3>Geospatial Analytics</h3><p>Google Earth Engine, GIS Architecture, Sentinel-1/2, Digital Twins.</p></div>
+                <div class="skill-card"><h3>Data & Visualization</h3><p>PowerBI, Tableau, GCP, Automated ETL Pipelines, Dashboard Design.</p></div>
+                <div class="skill-card"><h3>Governance & Leadership</h3><p>Policy Development, Data Protection, Presentation Design.</p></div>
+            </div>
+        </section>
 
-.container { max-width: 900px; margin: auto; padding: 20px; position: relative; z-index: 2; }
+        <section id="projects">
+            <h2>Key Projects</h2>
+            <div class="project-card">
+                <h3>Port Said Coastal Flood Prediction Digital Twin</h3>
+                <p>High-fidelity Digital Twin on GCP, merging hydrology with AI for coastal flood impact simulation (92% accuracy).</p>
+            </div>
+        </section>
 
-header { padding: 20px 0; display: flex; justify-content: space-between; align-items: center; }
-nav ul { display: flex; list-style: none; gap: 20px; }
-nav a { color: var(--text-color); text-decoration: none; font-weight: bold; }
+        <section id="contact">
+            <h2>Contact</h2>
+            <p>Email: <a href="mailto:aelktawey0@gmail.com">aelktawey0@gmail.com</a></p>
+        </section>
+    </main>
 
-#hero { padding: 80px 0; text-align: center; }
-.highlight { color: var(--accent-color); }
-.description { color: #8892b0; max-width: 700px; margin: 0 auto; }
-
-h2 { border-bottom: 2px solid var(--accent-color); display: inline-block; padding-bottom: 5px; margin-top: 50px; }
-.skills-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 20px; margin-top: 30px; }
-.skill-card { background: rgba(0, 242, 254, 0.01); padding: 20px; border-radius: 10px; border: 1px solid rgba(0, 242, 254, 0.03); }
-
-.project-card { border: 1px dashed var(--accent-color); padding: 40px; border-radius: 10px; margin-top: 20px; }
+    <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>
