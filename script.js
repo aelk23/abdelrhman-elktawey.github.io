@@ -2,21 +2,21 @@ window.addEventListener('DOMContentLoaded', (event) => {
     if (typeof particlesJS !== 'undefined') {
         particlesJS("particles-js", {
             "particles": {
-                "number": { "value": 75, "density": { "enable": true, "value_area": 800 } },
-                "color": { "value": "#00f2fe" }, // تم تغيير لون النقاط للسايان
+                "number": { "value": 140, "density": { "enable": true, "value_area": 900 } }, // زيادة عدد النقاط بشكل متوازن
+                "color": { "value": "#00f2fe" }, // لون السايان بلو النقي
                 "shape": { "type": "circle" },
-                "opacity": { "value": 0.25, "random": true },
+                "opacity": { "value": 0.18, "random": true }, // نقاط خفيفة وغير مزعجة للعين
                 "size": { "value": 1.5, "random": false },
                 "line_linked": { 
                     "enable": true, 
-                    "distance": 140, 
-                    "color": "#00f2fe", // لون الخطوط سايان باهت جداً
-                    "opacity": 0.04, 
+                    "distance": 130, 
+                    "color": "#00f2fe", 
+                    "opacity": 0.03, // خطوط باهتة جداً وفخمة
                     "width": 1 
                 },
                 "move": { 
                     "enable": true, 
-                    "speed": 0.5, 
+                    "speed": 0.4, // حركة عائمة ناعمة جداً كالزبدة
                     "direction": "none", 
                     "random": true, 
                     "straight": false, 
@@ -30,13 +30,13 @@ window.addEventListener('DOMContentLoaded', (event) => {
                     "onhover": { "enable": true, "mode": "grab" }
                 },
                 "modes": {
-                    "grab": { "distance": 180, "line_linked": { "opacity": 0.25 } }
+                    "grab": { "distance": 160, "line_linked": { "opacity": 0.2 } }
                 }
             },
             "retina_detect": true
         });
 
-        // --- محرك الهالة الإنسيابية المتقدم (Smooth Lerp Aura) ---
+        // --- محرك الهالة الإنسيابية المتقدم مع تأخير 4 ثوانٍ ---
         const canvas = document.querySelector('#particles-js canvas');
         if (canvas) {
             let mouseX = window.innerWidth / 2;
@@ -52,21 +52,23 @@ window.addEventListener('DOMContentLoaded', (event) => {
                 mouseX = e.clientX;
                 mouseY = e.clientY;
 
-                // رفع الشفافية لـ 0.25 لتظهر الهالة بشكل أوضح وممتاز
-                targetOpacity = 0.25; 
+                // رفع الشفافية لـ 0.4 لتكون واضحة للعين تماماً وغير مزعجة
+                targetOpacity = 0.4; 
                 
                 clearTimeout(mouseTimeout);
+                // تأخير الاختفاء لمدة 4 ثوانٍ (4000 ملي ثانية) عند توقف الماوس
                 mouseTimeout = setTimeout(() => {
                     targetOpacity = 0;
-                }, 120); // وقت التلاشي عند التوقف
+                }, 4000); 
             });
 
             function updateAura() {
-                // تتبع الماوس بنعومة الزبدة
+                // تتبع حركة الماوس بسلاسة تامة
                 auraX += (mouseX - auraX) * 0.08;
                 auraY += (mouseY - auraY) * 0.08;
 
-                currentOpacity += (targetOpacity - currentOpacity) * 0.1;
+                // تنعيم الترانزشن الخاص بالظهور والاختفاء
+                currentOpacity += (targetOpacity - currentOpacity) * 0.05;
 
                 document.documentElement.style.setProperty('--mouse-x', `${auraX}px`);
                 document.documentElement.style.setProperty('--mouse-y', `${auraY}px`);
@@ -74,7 +76,7 @@ window.addEventListener('DOMContentLoaded', (event) => {
 
                 requestAnimationFrame(updateAura);
             }
-            updateAura();
+ UpdateAura();
         }
     }
 });
